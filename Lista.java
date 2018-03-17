@@ -106,18 +106,17 @@ public class Lista {
 		
 			busqueda.add(nombresLista.getNombre());
 						
+			if (nombresLista.getNombre().equals(unNombre)) {
+				
+				System.out.println(nombresLista);
+			
+			}
 			
 		}
 		
-		if (busqueda.contains(unNombre)) {
+		if (!busqueda.contains(unNombre)) {
 			
-			System.out.print("\n********************Encontrado******************** \n");
-			System.out.println("\n"+personitas.get(busqueda.indexOf(unNombre)).toString());
-			
-							
-		}
-		else {
-			
+		
 			System.out.println("\n Nombre no encontrado");
 			
 		}
