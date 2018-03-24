@@ -6,3 +6,4 @@ Estos datos que están en el siguiente orden [Nombre,Apellidos,DNI,Edad,Calle,Co
 Otra opción de escritura utiliza lo definido en en el ArrayList y sobrescribe en el archivo contactos.csv
 #
 Actualización : Se corrige el método de búsqueda de nombre, ahora incluye también los nombres que estén repetidos con un condiconal equals
+# Actualización 22 de marzo : Se utiliza la clase lista como un objeto, prescindiendo de los métodos estáticos. Se incluye un comprobador de DNI existente para no incluir dos números iguales.
