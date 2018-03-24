@@ -1,11 +1,18 @@
-import java.nio.channels.InterruptedByTimeoutException;
+
 import java.util.*;
+
+import org.omg.CORBA.PRIVATE_MEMBER;
 
 public class MainArrayList {
 
 	static Scanner teclado = new Scanner(System.in);
 
 	static Byte opcion;
+	
+	static Lista listaUtilizada = new Lista();
+	
+	private static int DNI;
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -30,7 +37,7 @@ public class MainArrayList {
 		imprime("\n1 - Carga una lista");
 		imprime("2 - Listar");
 		imprime("3 - Inserta una persona al final de la lista");
-		imprime("4 - Elimina a una persona");
+		imprime("4 - Elimina a una persona por DNI");
 		imprime("5 - Cuenta el numero de personas en la lista");
 		imprime("6 - Busca por DNI");
 		imprime("7 - Busca por nombre");
@@ -54,13 +61,13 @@ public class MainArrayList {
 
 			//Lista.cargarLista();
 				
-			Lista.cargarCSV();
+			listaUtilizada.cargarCSV();
 
 				break;
 
 			case 2:
 
-				Lista.listar();
+				listaUtilizada.listar();
 
 				break;
 
@@ -72,15 +79,14 @@ public class MainArrayList {
 
 			case 4:
 
-				imprime("Nombre de la persona que quiere eliminar:");
-				Lista.eliminaNombre(teclado.next());
+				imprime("Número de DNI de la persona que quiere eliminar:");
+				listaUtilizada.eliminaDNI(teclado.nextInt());
 			
-
 				break;
 
 			case 5:
 
-				Lista.contar();
+				listaUtilizada.contar();
 
 
 				break;
@@ -88,26 +94,26 @@ public class MainArrayList {
 			case 6:
 				
 				imprime("Introduce el DNI a buscar");
-				Lista.buscarDNI(teclado.nextInt());
+				listaUtilizada.buscarDNI(teclado.nextInt());
 				
 				break;
 				
 			case 7:
 				
 				imprime("Introduce el nombre a buscar :");
-				Lista.buscarNombre(teclado.next());
+				listaUtilizada.buscarNombre(teclado.next());
 			
 				break;
 
 			case 8:
 				
-				Lista.ordenaNombre();
+				listaUtilizada.ordenaNombre();
 				
 				break;
 				
 				case 9:
 					
-					Lista.guardarCSV();
+					listaUtilizada.guardarCSV();
 					break;
 					
 			default:
@@ -131,9 +137,8 @@ public class MainArrayList {
 
 		imprime("Edad:");
 		int edad = teclado.nextInt();
-
-		imprime("DNI:");
-		int DNI = teclado.nextInt();
+		
+		insertarDNI();
 
 		imprime("Calle :");
 		String calle = teclado.next();
@@ -144,11 +149,26 @@ public class MainArrayList {
 		imprime("Provincia :");
 		String pronvincia = teclado.next();
 
-		Lista.insertar(new Persona(nombre, apellidos, DNI, edad, calle, cp, pronvincia));
+		listaUtilizada.insertar(new Persona(nombre, apellidos, DNI, edad, calle, cp, pronvincia));
 		
 		ejecutaMenu();
 	}
 
+	public static void insertarDNI () {
+		
+		imprime("DNI:");
+		DNI = teclado.nextInt();	
+		
+		if (listaUtilizada.compruebaDNI(DNI)) {
+			
+			imprime("Ese número ya existe, elija otro");
+			imprime("\n");
+			insertarDNI();
+		}
+		
+	
+		
+	}
 	
 }
 

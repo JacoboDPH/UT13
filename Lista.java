@@ -1,11 +1,11 @@
 import java.util.*;
+
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.FileReader;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.lang.*;
 
 
 
@@ -20,18 +20,18 @@ public class Lista {
 		
 	}
 	
-	public static void cargarLista() {
+	public void cargarLista() {
 		
 		personitas.add(new Persona("Joselito", "Anchoa", 78230212, 25, "Pachanga", 38200, "Teruel"));
 		personitas.add(new Persona("Ana", "Paciencia", 43323400, 30, "Hartura", 38100, "Tenerife"));
 		personitas.add(new Persona("Juan", "Gonzalo", 78271823, 30, "Los Dolores de Cabeza", 38109, "Tenerife"));
 	}
 	
-	public static void insertar(Persona p) {
+	public void insertar(Persona p) {
 	    personitas.add(p);
 	}
 	
-	public static void listar() {
+	public void listar() {
 		
 		for (Persona listado:personitas) {
 			
@@ -47,7 +47,28 @@ public class Lista {
 		
 	}
 
-	public static void eliminaNombre (String unNombre) {
+	public void eliminaDNI (int unDNI) {
+	
+		
+			
+	
+		ArrayList<Integer> borrado = new ArrayList<>();
+		
+		for (Persona DNILista: personitas) {
+			
+			borrado.add(DNILista.getDni());
+		}
+		
+		if (borrado.contains(unDNI)) {
+			
+			personitas.remove(borrado.indexOf(unDNI));
+			
+		}
+	
+		
+	}
+	
+	public void eliminaNombre (String unNombre) {
 
 		ArrayList<String> borrado = new ArrayList<>();
 
@@ -71,7 +92,7 @@ public class Lista {
 	}
 
 
-	public static void buscarDNI (int unDNI) {
+	public  void buscarDNI (int unDNI) {
 		
 		ArrayList<Integer> busqueda = new ArrayList<>();
 
@@ -97,8 +118,24 @@ public class Lista {
 
 		
 	}
+	public boolean compruebaDNI (int unDNI) {
+		
+		boolean existe = false;
+		ArrayList<Integer> busqueda = new ArrayList<>();
+
+		for (Persona nombresLista : personitas) 
+		
+			busqueda.add(nombresLista.getDni());
+							
+				
+		if (busqueda.contains(unDNI)) 
+				
+			existe = true;
+		
+		return existe;
+	}
 	
- public static void buscarNombre (String unNombre) {
+ public void buscarNombre (String unNombre) {
 		
 		ArrayList<String> busqueda = new ArrayList<>();
 
@@ -124,14 +161,14 @@ public class Lista {
 		
 	}
 	
-	public static void contar() {
+	public void contar() {
 		
 		
 		System.out.println("La lista tiene " + personitas.size()+" personas");
 		
 	}
 
-	public static void guardarCSV() {
+	public void guardarCSV() {
 		
 		try {
 			
@@ -152,7 +189,7 @@ public class Lista {
 		
 	}
 	
-	public static void cargarCSV () {
+	public void cargarCSV () {
 		
 		    String csvFichero = "contactos.csv";
 	        BufferedReader br = null;
@@ -197,12 +234,12 @@ public class Lista {
 	
 	// Método útil 
 	
-	public static int convierte(String unString) {
+	public int convierte(String unString) {
 		
 		return Integer.parseInt(unString);
 	}
 	
-	public static void ordenaNombre ()
+	public  void ordenaNombre ()
 	{
 	
 		Collections.sort(personitas);
