@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
+
 
 public class MainArrayList {
 
@@ -15,7 +15,6 @@ public class MainArrayList {
 	
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 
 		ejecutaMenu();
